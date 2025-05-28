@@ -1,34 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { CalculatorDisplay } from "./components/CalculatorDisplay"
+import { Card } from "./components/ui/Card"
+import { OperationHistory } from "./components/OperationHistory"
+import { CalculatorKeyPad } from "./components/CalculatorKeyPad"
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <main className="text-(--text) font-(--font-sans) flex justify-center align-center">
+      
+      <div className={`
+        py-8 px-4
+        flex flex-col sm:flex-row
+        items-center sm:items-stretch
+        gap-2
+        `}>
+        <Card className={`
+            flex flex-col gap-[1.5rem] w-[22.25rem]
+            pt-14 px-8 pb-8
+          `}
+        >
+          <CalculatorDisplay
+            result="2"
+            operation="1 + 3"
+          />
+          
+          <CalculatorKeyPad />
+        </Card>
+        <OperationHistory />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </main>
   )
 }
 
