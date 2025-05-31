@@ -9,7 +9,7 @@ export const OperationHistory = () => {
 	return (
 		<Card className="py-10 px-8 pt-14">
 			<Text as="h1" variant="heading" className="mb-4">
-				Historico de Operações
+				Histórico de Operações
 			</Text>
 			
 			{history.length > 0 ? (

@@ -3,46 +3,11 @@ import { CalculatorDisplay } from "./CalculatorDisplay";
 import { CalculatorKeyPad } from "./CalculatorKeyPad";
 import { useContext, useState } from "react";
 import { CalculatorContext } from "../contexts/CalculatorContext";
+import { useCalculator } from "../hooks/useCalculator";
 
 export const Calculator = () => {
-    const [operation, setOperation] = useState("");
-	const [result, setResult] = useState("");
-	const {updateHistory} = useContext(CalculatorContext);
-
-	const handleSetOperation = (input) => {
-		if (input === "C") {
-			setOperation("");
-			setResult("");
-			return;
-		}
-
-		if (input === "CE") {
-			setResult("");
-			setOperation(operation.slice(0, -1));
-			return;
-		}
-
-		if (input === "=") {
-			const operationResult = eval(operation.replace(/,/g, "."));
-			const resultParse = operationResult.toString().replace(/\./, ",");
-			setResult(resultParse);
-			updateHistory(operation, resultParse)
-			return;
-		}
-
-		if (result) {
-			setResult("");
-			setOperation(isNaN(input) ? `${result}${input}` : input);
-			return;
-		}
-
-		if (input === "," && !operation.endsWith(",")) {
-			setOperation(`${operation},`);
-			return;
-		}
-
-		setOperation(`${operation}${input}`);
-    };
+    
+	const {doOperation, operation, result} = useCalculator();
     
     return (
         <Card
@@ -52,7 +17,7 @@ export const Calculator = () => {
             `}
         >
             <CalculatorDisplay result={result} operation={operation} />
-            <CalculatorKeyPad setOperation={handleSetOperation} />
+            <CalculatorKeyPad setOperation={doOperation} />
         </Card>
     )
 }
