@@ -1,11 +1,13 @@
 import { Card } from "./ui/Card";
 import { CalculatorDisplay } from "./CalculatorDisplay";
 import { CalculatorKeyPad } from "./CalculatorKeyPad";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CalculatorContext } from "../contexts/CalculatorContext";
 
 export const Calculator = () => {
     const [operation, setOperation] = useState("");
 	const [result, setResult] = useState("");
+	const {updateHistory} = useContext(CalculatorContext);
 
 	const handleSetOperation = (input) => {
 		if (input === "C") {
@@ -24,6 +26,7 @@ export const Calculator = () => {
 			const operationResult = eval(operation.replace(/,/g, "."));
 			const resultParse = operationResult.toString().replace(/\./, ",");
 			setResult(resultParse);
+			updateHistory(operation, resultParse)
 			return;
 		}
 

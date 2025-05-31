@@ -1,5 +1,6 @@
 import { Calculator } from "./components/Calculator";
 import { OperationHistory } from "./components/OperationHistory";
+import { CalculatorProvider } from "./contexts/CalculatorContext";
 
 function App() {
 
@@ -13,8 +14,10 @@ function App() {
 					gap-2
 				`}
 			>
-				<Calculator/>
-				<OperationHistory />
+				<CalculatorProvider>
+					<Calculator/>
+					<OperationHistory />
+				</CalculatorProvider>
 			</div>
 		</main>
 	);
