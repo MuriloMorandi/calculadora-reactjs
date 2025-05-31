@@ -33,7 +33,6 @@ export const CalculatorKeyPad = ({ setOperation }) => {
 	];
 
 	const handleClick = (value) => {
-		console.log(value);
 		setOperation(value);
 	};
 
