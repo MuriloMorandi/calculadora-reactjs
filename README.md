@@ -1,8 +1,6 @@
 # 📦 Calculadora em ReactJS
 
-Uma breve descrição do projeto. Por exemplo:
-
-> Aplicação web construída com ReactJS para praticar fundamentos do React.js
+> Aplicação web construída em ReactJS para praticar fundamentos
 
 ---
 
