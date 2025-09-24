@@ -1,54 +1,61 @@
-name: Biome Auto Format
+  name: Biome Auto Format
 
-on:
-  push:
-    branches:
-      - "master"
-  pull_request:
-    
-  workflow_dispatch:
-
-permissions:
-  contents: write # 🔑 permite que o bot faça commits
-
-jobs:
-  biome:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Use Node.js  22
-        uses: actions/setup-node@v4
-        with:
-          node-version:  22
-
-      - name: Install pnpm
-        run: npm install -g pnpm
-
-      - name: Install dependencies
-        run: pnpm install
+  on:
+    push:
+      branches:
+        - "master"
+    pull_request:
       
-      - name: Run Biome check
-        run: pnpm lint || echo "has_errors=true" >> $GITHUB_ENV
-      
-      - name: Run Biome format
-        if: env.has_errors == 'true'
-        run: pnpm fix
+    workflow_dispatch:
 
-      - name: Commit changes
-        if: env.has_errors == 'true'
-        run: |
-          if [[ -n "$(git status --porcelain)" ]]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add .
-            git commit -m "chore: auto-format with Biome"
+  permissions:
+    contents: write # 🔑 permite que o bot faça commits
 
-            # Extrair o nome da branch a partir do GITHUB_REF
-            branch="${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}"
+  jobs:
+    biome:
+      runs-on: ubuntu-latest
 
-            git push origin HEAD:"$branch"
-          else
-            echo "✅ Nenhuma mudança necessária."
-          fi
+      steps:
+        - uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+            ref: ${{ github.head_ref || github.ref_name }}
+
+        - name: Use Node.js 22
+          uses: actions/setup-node@v4
+          with:
+            node-version:  22
+
+        - name: Install pnpm
+          run: npm install -g pnpm
+
+        - name: Install dependencies
+          run: pnpm install
+        
+        - name: Run Biome check
+          run: pnpm lint || echo "has_errors=true" >> $GITHUB_ENV
+        
+        - name: Run Biome format
+          if: env.has_errors == 'true'
+          run: pnpm fix
+
+        - name: Commit changes
+          if: env.has_errors == 'true'
+          run: |
+            if [[ -n "$(git status --porcelain)" ]]; then
+              git config user.name "github-actions[bot]"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git add .
+              git commit -m "chore: auto-format with Biome"
+
+              branch="${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}"
+
+              # 🧠 Atualizar branch remota antes de push (evita rejeição)
+              git fetch origin "$branch"
+              git rebase origin/"$branch" || git rebase --skip
+
+              # 🚀 Fazer push
+              git push origin HEAD:"$branch"
+            else
+              echo "✅ Nenhuma mudança necessária."
+            fi
