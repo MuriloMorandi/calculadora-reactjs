@@ -20,6 +20,6 @@ export const Text = ({
 			className: `${textVariants[variant]} ${className || ""}`,
 			...props,
 		},
-		children,
+		children
 	);
 };

@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const CalculatorContext = createContext();
 
@@ -8,7 +7,7 @@ export const CalculatorProvider = ({ children }) => {
 	const historyStorageKey = "history";
 
 	const updateHistory = (operation, result) => {
-		setHistory((prev) => {
+		setHistory(prev => {
 			const updateHistory = [...prev, `${operation}=${result}`];
 			localStorage.setItem(historyStorageKey, JSON.stringify(updateHistory));
 

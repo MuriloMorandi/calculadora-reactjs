@@ -14,7 +14,6 @@ export const Button = ({
 	return (
 		<Text
 			as="button"
-			variants="heading"
 			className={`
                 flex items-center justify-center rounded-xl
                 p-3 cursor-pointer text-(--text)
@@ -24,6 +23,7 @@ export const Button = ({
                 ${buttonVariants[variant]} ${className || ""}
                 ${className || ""}
             `}
+			variants="heading"
 			{...props}
 		>
 			{children}

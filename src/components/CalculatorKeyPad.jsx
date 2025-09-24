@@ -32,7 +32,7 @@ export const CalculatorKeyPad = ({ setOperation }) => {
 		],
 	];
 
-	const handleClick = (value) => {
+	const handleClick = value => {
 		setOperation(value);
 	};
 
@@ -42,10 +42,10 @@ export const CalculatorKeyPad = ({ setOperation }) => {
 				<div className="flex gap-3" key={crypto.randomUUID()}>
 					{row.map(({ input, className, variant }) => (
 						<Button
-							key={input}
 							className={className || "w-16 h-16"}
-							variant={variant}
+							key={input}
 							onClick={() => handleClick(input)}
+							variant={variant}
 						>
 							{input}
 						</Button>

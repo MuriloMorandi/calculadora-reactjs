@@ -10,8 +10,8 @@ export const CalculatorDisplay = ({ result, operation }) => {
 		>
 			<Text
 				as="div"
-				variant="muted"
 				className="flex items-center justify-end h-7"
+				variant="muted"
 			>
 				{result && operation}
 			</Text>

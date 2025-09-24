@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CalculatorContext } from "../contexts/CalculatorContext";
 
 export const useCalculator = () => {
@@ -7,7 +6,7 @@ export const useCalculator = () => {
 	const [result, setResult] = useState("");
 	const { updateHistory } = useContext(CalculatorContext);
 
-	const doOperation = (input) => {
+	const doOperation = input => {
 		if (input === "C") {
 			setOperation("");
 			setResult("");

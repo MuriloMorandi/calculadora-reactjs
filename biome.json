@@ -19,7 +19,7 @@
 			"correctness": {
 				"noUnusedImports": "info"
 			},
-			"suspicious":{
+			"suspicious": {
 				"noUnknownAtRules": "info"
 			}
 		}
