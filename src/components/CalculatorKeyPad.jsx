@@ -38,8 +38,8 @@ export const CalculatorKeyPad = ({ setOperation }) => {
 
 	return (
 		<div className="flex flex-col gap-3">
-			{buttons.map((row, index) => (
-				<div key={index} className="flex gap-3">
+			{buttons.map(row => (
+				<div className="flex gap-3" key={crypto.randomUUID()}>
 					{row.map(({ input, className, variant }) => (
 						<Button
 							key={input}

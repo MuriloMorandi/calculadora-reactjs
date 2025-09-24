@@ -21,6 +21,7 @@ export const useCalculator = () => {
 		}
 
 		if (input === "=") {
+			// biome-ignore lint/security/noGlobalEval: <explanation>
 			const operationResult = eval(operation.replace(/,/g, "."));
 			const resultParse = operationResult.toString().replace(/\./, ",");
 			setResult(resultParse);
@@ -30,7 +31,7 @@ export const useCalculator = () => {
 
 		if (result) {
 			setResult("");
-			setOperation(isNaN(input) ? `${result}${input}` : input);
+			setOperation(Number.isNaN(input) ? `${result}${input}` : input);
 			return;
 		}
 

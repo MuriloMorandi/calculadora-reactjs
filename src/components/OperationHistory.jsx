@@ -14,8 +14,8 @@ export const OperationHistory = () => {
 
 			{history.length > 0 ? (
 				<ul className="flex flex-col gap-3">
-					{history.map((value, index) => (
-						<Text key={index} as="li">
+					{history.map(value => (
+						<Text as="li" key={crypto.randomUUID()}>
 							{value}
 						</Text>
 					))}
