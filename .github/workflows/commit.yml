@@ -2,8 +2,11 @@ name: Biome Lint & Format
 
 on:
   push:
-    branches: [ '*' ]
+    branches: [ 'config-biome' ]
   workflow_dispatch:
+
+permissions:
+  contents: write # 🔑 permite que o bot faça commits
 
 jobs:
   biome:
