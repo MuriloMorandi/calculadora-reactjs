@@ -3,12 +3,12 @@ import { useState } from "react";
 import { CalculatorContext } from "../contexts/CalculatorContext";
 
 export const useCalculator = () => {
-    const [operation, setOperation] = useState("");
+	const [operation, setOperation] = useState("");
 	const [result, setResult] = useState("");
-	const {updateHistory} = useContext(CalculatorContext);
-    
-    const doOperation = (input) => {
-        if (input === "C") {
+	const { updateHistory } = useContext(CalculatorContext);
+
+	const doOperation = (input) => {
+		if (input === "C") {
 			setOperation("");
 			setResult("");
 			return;
@@ -24,7 +24,7 @@ export const useCalculator = () => {
 			const operationResult = eval(operation.replace(/,/g, "."));
 			const resultParse = operationResult.toString().replace(/\./, ",");
 			setResult(resultParse);
-			updateHistory(operation, resultParse)
+			updateHistory(operation, resultParse);
 			return;
 		}
 
@@ -40,11 +40,11 @@ export const useCalculator = () => {
 		}
 
 		setOperation(`${operation}${input}`);
-    }
+	};
 
-    return {
-        doOperation,
-        operation,
-        result,
-    }
-}
+	return {
+		doOperation,
+		operation,
+		result,
+	};
+};
