@@ -1,14 +1,13 @@
-import { useContext } from "react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CalculatorContext } from "../contexts/CalculatorContext";
 
 export const useCalculator = () => {
-    const [operation, setOperation] = useState("");
+	const [operation, setOperation] = useState("");
 	const [result, setResult] = useState("");
-	const {updateHistory} = useContext(CalculatorContext);
-    
-    const doOperation = (input) => {
-        if (input === "C") {
+	const { updateHistory } = useContext(CalculatorContext);
+
+	const doOperation = input => {
+		if (input === "C") {
 			setOperation("");
 			setResult("");
 			return;
@@ -21,16 +20,17 @@ export const useCalculator = () => {
 		}
 
 		if (input === "=") {
+			// biome-ignore lint/security/noGlobalEval: <explanation>
 			const operationResult = eval(operation.replace(/,/g, "."));
 			const resultParse = operationResult.toString().replace(/\./, ",");
 			setResult(resultParse);
-			updateHistory(operation, resultParse)
+			updateHistory(operation, resultParse);
 			return;
 		}
 
 		if (result) {
 			setResult("");
-			setOperation(isNaN(input) ? `${result}${input}` : input);
+			setOperation(Number.isNaN(input) ? `${result}${input}` : input);
 			return;
 		}
 
@@ -40,11 +40,11 @@ export const useCalculator = () => {
 		}
 
 		setOperation(`${operation}${input}`);
-    }
+	};
 
-    return {
-        doOperation,
-        operation,
-        result,
-    }
-}
+	return {
+		doOperation,
+		operation,
+		result,
+	};
+};

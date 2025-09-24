@@ -1,8 +1,9 @@
-name: Biome Lint & Format
+name: Biome Auto Format
 
 on:
   push:
-    branches: [ 'config-biome' ]
+    branches:
+      - "master"
   workflow_dispatch:
 
 permissions:
@@ -31,7 +32,7 @@ jobs:
       
       - name: Run Biome format
         if: env.has_errors == 'true'
-        run: pnpm format
+        run: pnpm fix
 
       - name: Commit changes
         if: env.has_errors == 'true'
