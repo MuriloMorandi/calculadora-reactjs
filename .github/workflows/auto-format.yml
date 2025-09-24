@@ -32,7 +32,7 @@ jobs:
       
       - name: Run Biome format
         if: env.has_errors == 'true'
-        run: pnpm format
+        run: pnpm fix
 
       - name: Commit changes
         if: env.has_errors == 'true'
