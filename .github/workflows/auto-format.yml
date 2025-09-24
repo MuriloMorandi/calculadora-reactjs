@@ -1,8 +1,9 @@
-name: Biome Lint & Format
+name: Biome Auto Format
 
 on:
   push:
-    branches: [ 'config-biome' ]
+    branches-ignore:
+      - "master"
   workflow_dispatch:
 
 permissions:
