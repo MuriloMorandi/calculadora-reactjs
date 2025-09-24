@@ -44,7 +44,11 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add .
             git commit -m "chore: auto-format with Biome"
-            git push
+
+            # Extrair o nome da branch a partir do GITHUB_REF
+            branch="${GITHUB_REF#refs/heads/}"
+
+            git push origin HEAD:"$branch"
           else
             echo "✅ Nenhuma mudança necessária."
           fi
