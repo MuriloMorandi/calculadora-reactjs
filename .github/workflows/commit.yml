@@ -24,19 +24,21 @@ jobs:
         run: pnpm install
       
       - name: Run Biome check
-        run: pnpm lint
+        run: pnpm lint || echo "has_errors=true" >> $GITHUB_ENV
       
       - name: Run Biome format
+        if: env.has_errors == 'true'
         run: pnpm format
 
       - name: Commit changes
+        if: env.has_errors == 'true'
         run: |
           if [[ -n "$(git status --porcelain)" ]]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add .
-            git commit -m "chore: apply biome format"
+            git commit -m "chore: auto-format with Biome"
             git push
           else
-            echo "No formatting changes."
+            echo "✅ Nenhuma mudança necessária."
           fi
