@@ -1,6 +1,11 @@
 import { Text } from "./ui/Text";
 
-export const CalculatorDisplay = ({ result, operation }) => {
+type CalculatorDisplayProps ={
+	result: string,
+	operation: string
+}
+
+export const CalculatorDisplay = ({ result, operation }: CalculatorDisplayProps) => {
 	return (
 		<div
 			className={`
@@ -11,7 +16,7 @@ export const CalculatorDisplay = ({ result, operation }) => {
 			<Text
 				as="div"
 				className="flex items-center justify-end h-7"
-				variant="muted"
+				variant="muded"
 			>
 				{result && operation}
 			</Text>
@@ -20,7 +25,7 @@ export const CalculatorDisplay = ({ result, operation }) => {
 				className="flex items-center justify-between h-,
 			9"
 			>
-				<Text variant="muted">=</Text>
+				<Text variant="muded">=</Text>
 				<Text variant="blast">{result || operation}</Text>
 			</div>
 		</div>

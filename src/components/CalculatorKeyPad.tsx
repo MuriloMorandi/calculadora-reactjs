@@ -1,7 +1,25 @@
-import { Button } from "./ui/Button";
+import { Button, type ButtonProps } from "./ui/Button";
 
-export const CalculatorKeyPad = ({ setOperation }) => {
-	const buttons = [
+type CalculatorKeyPadProps = {
+	setOperation: (value: string)=> void
+}
+
+type ButtonType = ({
+    input: string;
+    className?: undefined;
+    variant?: undefined;
+} | {
+    input: string;
+    className: string;
+    variant?: undefined;
+} | {
+    input: string;
+    className?: undefined;
+    variant: ButtonProps['variant'];
+})[][]
+
+export const CalculatorKeyPad = ({ setOperation }: CalculatorKeyPadProps) => {
+	const buttons: ButtonType = [
 		[
 			{ input: "CE" },
 			{ input: "C", className: "flex-1 h-16" },
@@ -32,7 +50,7 @@ export const CalculatorKeyPad = ({ setOperation }) => {
 		],
 	];
 
-	const handleClick = value => {
+	const handleClick = (value:string) => {
 		setOperation(value);
 	};
 
