@@ -1,22 +1,26 @@
 import { Button, type ButtonProps } from "./ui/Button";
 
 type CalculatorKeyPadProps = {
-	setOperation: (value: string)=> void
-}
+	setOperation: (value: string) => void;
+};
 
-type ButtonType = ({
-    input: string;
-    className?: undefined;
-    variant?: undefined;
-} | {
-    input: string;
-    className: string;
-    variant?: undefined;
-} | {
-    input: string;
-    className?: undefined;
-    variant: ButtonProps['variant'];
-})[][]
+type ButtonType = (
+	| {
+			input: string;
+			className?: undefined;
+			variant?: undefined;
+	  }
+	| {
+			input: string;
+			className: string;
+			variant?: undefined;
+	  }
+	| {
+			input: string;
+			className?: undefined;
+			variant: ButtonProps["variant"];
+	  }
+)[][];
 
 export const CalculatorKeyPad = ({ setOperation }: CalculatorKeyPadProps) => {
 	const buttons: ButtonType = [
@@ -50,7 +54,7 @@ export const CalculatorKeyPad = ({ setOperation }: CalculatorKeyPadProps) => {
 		],
 	];
 
-	const handleClick = (value:string) => {
+	const handleClick = (value: string) => {
 		setOperation(value);
 	};
 

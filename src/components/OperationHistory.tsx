@@ -3,7 +3,7 @@ import { Card } from "./ui/Card";
 import { Text } from "./ui/Text";
 
 export const OperationHistory = () => {
-	const { history } = useCalculatorContext()
+	const { history } = useCalculatorContext();
 
 	return (
 		<Card className="py-10 px-8 pt-14">

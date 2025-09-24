@@ -1,11 +1,14 @@
 import { Text } from "./ui/Text";
 
-type CalculatorDisplayProps ={
-	result: string,
-	operation: string
-}
+type CalculatorDisplayProps = {
+	result: string;
+	operation: string;
+};
 
-export const CalculatorDisplay = ({ result, operation }: CalculatorDisplayProps) => {
+export const CalculatorDisplay = ({
+	result,
+	operation,
+}: CalculatorDisplayProps) => {
 	return (
 		<div
 			className={`

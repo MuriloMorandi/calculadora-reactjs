@@ -7,9 +7,9 @@ const buttonVariants = {
 };
 
 export type ButtonProps = ComponentProps<"button"> & {
-	children?: ReactNode,
-	variant?: keyof typeof  buttonVariants
-}
+	children?: ReactNode;
+	variant?: keyof typeof buttonVariants;
+};
 
 export const Button = ({
 	variant = "default",

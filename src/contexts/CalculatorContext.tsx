@@ -1,11 +1,19 @@
-import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
+import {
+	createContext,
+	type ReactNode,
+	useContext,
+	useEffect,
+	useState,
+} from "react";
 
-interface CalculatorContextType{
-	history: string[],
-	updateHistory: (operation: string, result: string)=>void,
+interface CalculatorContextType {
+	history: string[];
+	updateHistory: (operation: string, result: string) => void;
 }
 
-export const CalculatorContext = createContext<CalculatorContextType| undefined>(undefined);
+export const CalculatorContext = createContext<
+	CalculatorContextType | undefined
+>(undefined);
 
 export const CalculatorProvider = ({ children }: { children: ReactNode }) => {
 	const [history, setHistory] = useState<string[]>([]);
@@ -39,12 +47,14 @@ export const CalculatorProvider = ({ children }: { children: ReactNode }) => {
 	);
 };
 
-export const useCalculatorContext = () =>{
+export const useCalculatorContext = () => {
 	const context = useContext(CalculatorContext);
-	
-	if(!context){
-		throw new Error('CalculatorContext must be used within a CalculatorProvider');
+
+	if (!context) {
+		throw new Error(
+			"CalculatorContext must be used within a CalculatorProvider"
+		);
 	}
 
 	return context;
-}
+};

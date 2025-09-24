@@ -7,22 +7,19 @@ export const useCalculator = () => {
 	const { updateHistory } = useCalculatorContext();
 
 	const doOperation = (input: string) => {
-		if (input === "C")
-		{
+		if (input === "C") {
 			setOperation("");
 			setResult("");
 			return;
 		}
 
-		if (input === "CE")
-		{
+		if (input === "CE") {
 			setResult("");
 			setOperation(operation.slice(0, -1));
 			return;
 		}
 
-		if (input === "=")
-		{
+		if (input === "=") {
 			// biome-ignore lint/security/noGlobalEval: <explanation>
 			const operationResult = eval(operation.replace(/,/g, "."));
 			const resultParse = operationResult.toString().replace(/\./, ",");
@@ -31,15 +28,13 @@ export const useCalculator = () => {
 			return;
 		}
 
-		if (result)
-		{
+		if (result) {
 			setResult("");
 			setOperation(Number.isNaN(input) ? `${result}${input}` : input);
 			return;
 		}
 
-		if (input === "," && !operation.endsWith(","))
-		{
+		if (input === "," && !operation.endsWith(",")) {
 			setOperation(`${operation},`);
 			return;
 		}
