@@ -46,7 +46,7 @@ jobs:
             git commit -m "chore: auto-format with Biome"
 
             # Extrair o nome da branch a partir do GITHUB_REF
-            branch="${GITHUB_REF#refs/heads/}"
+            branch="${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}"
 
             git push origin HEAD:"$branch"
           else
