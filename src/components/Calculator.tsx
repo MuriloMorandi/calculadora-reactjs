@@ -1,5 +1,3 @@
-import { useContext, useState } from "react";
-import { CalculatorContext } from "../contexts/CalculatorContext";
 import { useCalculator } from "../hooks/useCalculator";
 import { CalculatorDisplay } from "./CalculatorDisplay";
 import { CalculatorKeyPad } from "./CalculatorKeyPad";

@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import { CalculatorContext } from "../contexts/CalculatorContext";
+import { useCalculatorContext } from "../contexts/CalculatorContext";
 import { Card } from "./ui/Card";
 import { Text } from "./ui/Text";
 
 export const OperationHistory = () => {
-	const { history } = useContext(CalculatorContext);
+	const { history } = useCalculatorContext();
 
 	return (
 		<Card className="py-10 px-8 pt-14">

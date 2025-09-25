@@ -1,3 +1,4 @@
+import type { ComponentProps, ReactNode } from "react";
 import { Text } from "./Text";
 
 const buttonVariants = {
@@ -5,12 +6,17 @@ const buttonVariants = {
 	primary: "bg-(--primary)",
 };
 
+export type ButtonProps = ComponentProps<"button"> & {
+	children?: ReactNode;
+	variant?: keyof typeof buttonVariants;
+};
+
 export const Button = ({
 	variant = "default",
 	children,
 	className,
 	...props
-}) => {
+}: ButtonProps) => {
 	return (
 		<Text
 			as="button"
@@ -23,7 +29,7 @@ export const Button = ({
                 ${buttonVariants[variant]} ${className || ""}
                 ${className || ""}
             `}
-			variants="heading"
+			variant="heading"
 			{...props}
 		>
 			{children}
